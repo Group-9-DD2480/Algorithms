@@ -89,7 +89,7 @@ public class ModPow {
 
     java.math.BigInteger A, N, M, r1;
     long a, n, m, r2;
-
+  /*
     A = new java.math.BigInteger("3");
     N = new java.math.BigInteger("4");
     M = new java.math.BigInteger("1000000");
@@ -101,6 +101,8 @@ public class ModPow {
     r1 = A.modPow(N, M); // 81
     r2 = modPow(a, n, m); // 81
     System.out.println(r1 + " " + r2);
+
+   */
 
     A = new java.math.BigInteger("-45");
     N = new java.math.BigInteger("12345");
