@@ -21,5 +21,19 @@ public class Knapsack01Test {
         }
 
     }
+    @Test
+    public void knapsack01InvalidInputTest2(){
+        int capacity = -1;
+        int[] V = {1, 4, 8, 3};
+        int[] W = {3, 3, 5, 6};
+        try {
+            int val = Knapsack_01.knapsack(capacity, W, V);
+
+        } catch (IllegalArgumentException e) {
+
+            assertThat(e).hasMessageThat().contains("Invalid input");
+        }
+
+    }
 
 }
