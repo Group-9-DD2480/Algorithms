@@ -21,6 +21,10 @@ public class TreePrinter {
 
   // Print a binary tree.
 
+  public static String getTreeDisplay(PrintableNode root){
+    return " ";
+  }
+
   public static boolean[] getTreeDisplay(PrintableNode root, boolean[] coverage) {
 
     StringBuilder sb = new StringBuilder();
