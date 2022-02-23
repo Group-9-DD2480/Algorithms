@@ -20,10 +20,20 @@ public class ModPowTest {
         a = A.longValue();
         n = N.longValue();
         m = M.longValue();
-        r1 = A.modPow(N, M); // 81
-        r2 = obj.modPow(a, n, m); // 81
+        r1 = A.modPow(N, M);
+        r2 = obj.modPow(a, n, m);
         assertThat(r1.longValue()).isEqualTo(r2);
 
+    }
+    @Test
+    public void modPowInvTest(){
+        long a, n, m, r2;
+        ModPow obj = new ModPow();
+        a = 1;
+        n = -2;
+        m = 39;
+        r2 = obj.modPow(a, n, m);
+        assertThat(r2).isEqualTo(obj.modPow(obj.modInv(a, m), -n, m));
     }
 
     @Test(expected = ArithmeticException.class)
@@ -33,7 +43,18 @@ public class ModPowTest {
         a = 3;
         n = 4;
         m = 0;
+        r2 = obj.modPow(a, n, m);
+    }
+
+    @Test(expected = ArithmeticException.class)
+    public void modPowException2(){
+        long a, n, m, r2;
+        ModPow obj = new ModPow();
+        a = 3;
+        n = -2;
+        m = 39;
         r2 = obj.modPow(a, n, m); // 81
     }
+
 
 }

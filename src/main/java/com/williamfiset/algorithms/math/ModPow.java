@@ -40,7 +40,7 @@ public class ModPow {
 
   // Returns the modular inverse of 'a' mod 'm'
   // Make sure m > 0 and 'a' & 'm' are relatively prime.
-  private static long modInv(long a, long m) {
+  public static long modInv(long a, long m) {
 
     a = ((a % m) + m) % m;
 
@@ -155,6 +155,11 @@ public class ModPow {
       } catch (ArithmeticException e) {
       }
     }
+    a = 3;
+    n = 0;
+    m = 39;
+    r2 = modPow(a, n, m); // 81
+    System.out.println(gcd(a, m));
   }
 
   /* TESTING RELATED METHODS */
