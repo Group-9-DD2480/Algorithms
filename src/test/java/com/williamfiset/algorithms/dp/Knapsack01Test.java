@@ -51,5 +51,14 @@ public class Knapsack01Test {
         }
 
     }
+    @Test
+    public void knapsack01CorrectOutputTest() {
+        int capacity = 10;
+        int[] V = {1, 4, 8, 3};
+        int[] W = {3, 3, 5, 6};
+        int val = Knapsack_01.knapsack(capacity, W, V);
+        assertThat(val).isEqualTo(12);
+
+    }
 
 }
