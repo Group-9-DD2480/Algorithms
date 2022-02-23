@@ -18,4 +18,28 @@ public class IsPrimeTest {
         boolean result = IsPrime.isPrime(9);
         assertFalse(result);
     }
+
+    //Input: 1
+    //expected output: false
+    @Test
+    public void testIsPrime1(){
+        boolean result = IsPrime.isPrime(1);
+        assertFalse(result);
+    }
+
+    //Input: 2
+    //expected output: true
+    @Test
+    public void testIsPrime2(){
+        boolean result = IsPrime.isPrime(2);
+        assertTrue(result);
+    }
+
+    //Input: 4
+    //expected output: false
+    @Test
+    public void testIsPrime4(){
+        boolean result = IsPrime.isPrime(4);
+        assertFalse(result);
+    }
 }
