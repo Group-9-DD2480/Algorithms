@@ -90,7 +90,9 @@ public class LongestCommonSubsequence {
       i--;
       j--; 
     }
-    System.out.println(activated.toString());
+    for (int a = 0; a < activated.length; a++) {
+      System.out.println(Integer.toString(a) + ": " + Boolean.toString(activated[a]));
+    }
     return new String(lcs, 0, lcsLen);
   }
 
