@@ -23,6 +23,17 @@ public class ModPowTest {
         r1 = A.modPow(N, M); // 81
         r2 = obj.modPow(a, n, m); // 81
         assertThat(r1.longValue()).isEqualTo(r2);
+
     }
-    
+
+    @Test(expected = ArithmeticException.class)
+    public void modPowException1(){
+        long a, n, m, r2;
+        ModPow obj = new ModPow();
+        a = 3;
+        n = 4;
+        m = 0;
+        r2 = obj.modPow(a, n, m); // 81
+    }
+
 }
