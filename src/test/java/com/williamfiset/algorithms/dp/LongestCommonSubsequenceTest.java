@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class LongestCommonSubsequenceTest {
 
+    // Correct implementation, expected output is the same as actual.
     @Test
     public void lcsCorrect() {
         char[] A = {'A', 'B', 'C', 'D', 'E'};
@@ -18,6 +19,7 @@ public class LongestCommonSubsequenceTest {
         assertEquals(expected, actual);
     }
 
+    // Expected output is null, as input contains an empty array.
     @Test
     public void lcsNull(){
         char[] A = {'A', 'B', 'C'};
@@ -27,6 +29,7 @@ public class LongestCommonSubsequenceTest {
         assertNull(result);
     }
 
+    // Expected output is null, as input contains a null value.
     @Test
     public void lcsNullFromNullInput(){
         char[] A = {'A', 'B', 'C'};
