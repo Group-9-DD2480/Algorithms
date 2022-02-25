@@ -18,6 +18,7 @@ public class ModPow {
   // happen when the values get squared (they will exceed 2^63-1)
   private static final long MAX = (long) Math.sqrt(Long.MAX_VALUE);
   private static final long MIN = -MAX;
+  public static final boolean[] branch_coverage = new boolean[11];
 
   // Computes the Greatest Common Divisor (GCD) of a & b
   private static long gcd(long a, long b) {
@@ -54,26 +55,36 @@ public class ModPow {
   // This function supports negative exponent values and a negative
   // base, however the modulus must be positive.
   public static long modPow(long a, long n, long mod) {
-
+    branch_coverage[0] = true;
+    branch_coverage[1] = mod <= 0;
     if (mod <= 0) throw new ArithmeticException("mod must be > 0");
+    branch_coverage[2] = a > MAX;
+    branch_coverage[3] = mod > MAX;
     if (a > MAX || mod > MAX)
       throw new IllegalArgumentException("Long overflow is upon you, mod or base is too high!");
+    branch_coverage[4] = (a < MIN);
+    branch_coverage[5] = (mod < MIN);
     if (a < MIN || mod < MIN)
       throw new IllegalArgumentException("Long overflow is upon you, mod or base is too low!");
 
     // To handle negative exponents we can use the modular
     // inverse of a to our advantage since: a^-n mod m = (a^-1)^n mod m
+    branch_coverage[6] = n <0;
     if (n < 0) {
+      branch_coverage[7] = (gcd(a, mod) != 1);
       if (gcd(a, mod) != 1)
         throw new ArithmeticException("If n < 0 then must have gcd(a, mod) = 1");
       return modPow(modInv(a, mod), -n, mod);
     }
-
+    branch_coverage[8] = (n == 0L);
     if (n == 0L) return 1L;
     long p = a, r = 1L;
-
+    branch_coverage[9] = (n != 0);
     for (long i = 0; n != 0; i++) {
       long mask = 1L << i;
+      if (branch_coverage[10] != true) {
+        branch_coverage[10] = ((n & mask) == mask);
+      }
       if ((n & mask) == mask) {
         r = (((r * p) % mod) + mod) % mod;
         n -= mask;
@@ -154,6 +165,10 @@ public class ModPow {
           System.out.printf("Broke with: a = %d, n = %d, m = %d\n", a, n, m);
       } catch (ArithmeticException e) {
       }
+
+    }
+    for(int i = 0; i < branch_coverage.length; i++){
+      System.out.println(branch_coverage[i]);
     }
     a = 3;
     n = 0;

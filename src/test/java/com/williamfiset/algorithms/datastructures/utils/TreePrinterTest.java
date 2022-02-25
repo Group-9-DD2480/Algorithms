@@ -1,10 +1,12 @@
 package com.williamfiset.algorithms.datastructures.utils;
+
 import static com.google.common.truth.Truth.assertThat;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import com.williamfiset.algorithms.datastructures.balancedtree.AVLTreeRecursive;
+
 import com.williamfiset.algorithms.datastructures.segmenttree.Node;
 import com.williamfiset.algorithms.datastructures.utils.TreePrinter.PrintableNode;
 
@@ -14,7 +16,6 @@ import org.junit.*;
 
 public class TreePrinterTest {
     private AVLTreeRecursive<Integer> tree;
-    private AVLTreeRecursive<Integer> tree1;
 
     @Before
         public void setup() {
