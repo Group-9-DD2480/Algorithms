@@ -167,9 +167,12 @@ public class ModPow {
       }
 
     }
+    /*
     for(int i = 0; i < branch_coverage.length; i++){
       System.out.println(branch_coverage[i]);
     }
+
+     */
     a = 3;
     n = 0;
     m = 39;
