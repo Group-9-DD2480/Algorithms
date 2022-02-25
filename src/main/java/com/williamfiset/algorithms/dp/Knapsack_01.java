@@ -16,7 +16,7 @@ import java.util.Hashtable;
 import java.util.List;
 
 public class Knapsack_01 {
-
+  public static final boolean[] branch_coverage = new boolean[10];
   /**
    * @param capacity - The maximum capacity of the knapsack
    * @param W - The weights of the items
@@ -24,58 +24,47 @@ public class Knapsack_01 {
    * @return The maximum achievable profit of selecting a subset of the elements such that the
    *     capacity of the knapsack is not exceeded
    */
+
   public static int knapsack(int capacity, int[] W, int[] V) {
-    Hashtable<String, Integer> coverage = new Hashtable<String, Integer>();
-    coverage.put("id0", 0);
-    coverage.put("id1", 0);
-    coverage.put("id2", 0);
-    coverage.put("id3", 0);
-    coverage.put("id4", 0);
-    coverage.put("id5", 0);
-    coverage.put("id6", 0);
-    coverage.put("id7", 0);
-    coverage.put("id8", 0);
-    coverage.put("id9", 0);
-    coverage.put("id10", 0);
-    coverage.put("id11", 0);
+    branch_coverage[0] = true;
+
 
 
     if (W == null || V == null || W.length != V.length || capacity < 0) {
-      if(W == null) coverage.put("id0", 1);
-      if(V == null) coverage.put("id1", 1);
-      if(W.length != V.length) coverage.put("id2", 1);
-      if(capacity < 0) coverage.put("id3", 1);
-      //id 0,1,2,3
-      System.out.println(coverage.toString());
+      branch_coverage[1] = W == null;
+      branch_coverage[2] = V == null;
+      branch_coverage[3] = W.length != V.length;
+      branch_coverage[4] = capacity < 0;
+
       throw new IllegalArgumentException("Invalid input");
-    } else{
-      coverage.put("id4", 1);
     }
     final int N = W.length;
 
     // Initialize a table where individual rows represent items
     // and columns represent the weight of the knapsack
     int[][] DP = new int[N + 1][capacity + 1];
-
+    branch_coverage[5] = N>0;
     for (int i = 1; i <= N; i++) {
-      coverage.put("id5", 1);
+
       // Get the value and weight of the item
       int w = W[i - 1], v = V[i - 1];
-
+      branch_coverage[6] = capacity>1;
       for (int sz = 1; sz <= capacity; sz++) {
-        //id 5
-        coverage.put("id6", 1);
+
         // Consider not picking this element
         DP[i][sz] = DP[i - 1][sz];
 
         // Consider including the current element and
         // see if this would be more profitable
+
+
+        if(!branch_coverage[7]) {
+          branch_coverage[7] = sz >= w && DP[i - 1][sz - w] + v > DP[i][sz];
+        }
         if (sz >= w && DP[i - 1][sz - w] + v > DP[i][sz]) {
           DP[i][sz] = DP[i - 1][sz - w] + v;
-          coverage.put("id7", 1);
 
-        }else{
-          coverage.put("id8", 1);
+
         }
 
       }
@@ -87,15 +76,15 @@ public class Knapsack_01 {
     // Using the information inside the table we can backtrack and determine
     // which items were selected during the dynamic programming phase. The idea
     // is that if DP[i][sz] != DP[i-1][sz] then the item was selected
+    branch_coverage[8] = N>0;
     for (int i = N; i > 0; i--) {
-      coverage.put("id9", 1);
+      if (!branch_coverage[9]) {
+        branch_coverage[9] = DP[i][sz] != DP[i - 1][sz];
+      }
       if (DP[i][sz] != DP[i - 1][sz]) {
-        coverage.put("id10", 1);
         int itemIndex = i - 1;
         itemsSelected.add(itemIndex);
         sz -= W[itemIndex];
-      } else{
-        coverage.put("id11", 1);
       }
     }
 
@@ -104,8 +93,8 @@ public class Knapsack_01 {
     // return itemsSelected;
 
     // Return the maximum profit
-    //System.out.println(coverage.toString());
-    System.out.println(coverage.toString());
+
+
     return DP[N][capacity];
   }
 
@@ -120,5 +109,8 @@ public class Knapsack_01 {
     V = new int[] {2, 2, 4, 5, 3};
     W = new int[] {3, 1, 3, 4, 2};
     System.out.println(knapsack(capacity, W, V));
+    for(int i = 0; i < branch_coverage.length; i++){
+      System.out.println(branch_coverage[i]);
+    }
   }
 }
