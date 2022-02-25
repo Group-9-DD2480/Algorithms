@@ -30,6 +30,7 @@ public class LongestCommonSubsequence {
 
     if (n == 0) {
         activated[2] = true;
+        return null;
     } 
     else if (m == 0) {
         activated[3] = true;   

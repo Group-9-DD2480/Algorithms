@@ -70,5 +70,18 @@ public class LongestCommonSubsequenceTest {
         String result = LongestCommonSubsequence.lcs(A, B);
         assertNull(result);
     }
+    @Test
+    public void branchCoverageTest() {
+        lcsCorrect();
+        lcsCorrectNoMatch();
+        lcsNullEmptyA();
+        lcsNullEmptyB();
+        lcsNullFromNullA();
+        lcsNullFromNullB();
 
+        boolean[] expected = new boolean[14];
+        for (int i = 0; i < 14; i++) expected[i] = true;
+        boolean[] actual = LongestCommonSubsequence.activated;
+        assertArrayEquals(expected, actual);
+    }
 }
