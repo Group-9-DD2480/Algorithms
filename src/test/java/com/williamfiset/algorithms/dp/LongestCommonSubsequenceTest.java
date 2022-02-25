@@ -18,6 +18,18 @@ public class LongestCommonSubsequenceTest {
 
         assertEquals(expected, actual);
     }
+    
+    // Expected output is an empty string.
+    @Test
+    public void lcsCorrectNoMatch() {
+        char[] A = {'A', 'B', 'C'};
+        char[] B = {'X', 'Y', 'Z'};
+
+        String expected = "";
+        String actual = LongestCommonSubsequence.lcs(A,B);
+
+        assertEquals(expected, actual);
+    }
 
     // Expected output is null, as input contains an empty array.
     @Test
