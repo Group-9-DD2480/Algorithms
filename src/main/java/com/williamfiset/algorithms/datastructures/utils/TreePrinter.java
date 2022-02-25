@@ -20,7 +20,7 @@ public class TreePrinter {
   }
 
   // Print a binary tree.
- public static final boolean[] coverage = new boolean[22];
+ public static final boolean[] coverage = new boolean[23];
 
 
   public static String getTreeDisplay(PrintableNode root) {
@@ -99,9 +99,10 @@ public class TreePrinter {
               c = (line.get(j) != null) ? '#' : '#';
             } else {
               coverage[11] = true;
+              coverage[12] = (j < line.size());
+              coverage[13] = (line.get(j) != null);
               if (j < line.size() && line.get(j) != null) {
                 c = '#';
-                coverage[12] = true;
               }
             }
           }
@@ -109,20 +110,20 @@ public class TreePrinter {
 
           // lines and spaces
           if (line.get(j) == null) {
-            coverage[13] = true;
+            coverage[14] = true;
             for (int k = 0; k < perpiece - 1; k++) {
-              coverage[14] = true;
+              coverage[15] = true;
               sb.append(' ');
             }
           } else {
-            coverage[15] = true;
+            coverage[16] = true;
             for (int k = 0; k < hpw; k++) {
-              coverage[16] = true;
+              coverage[17] = true;
               sb.append(j % 2 == 0 ? " " : "#");
             }
             sb.append(j % 2 == 0 ? "#" : "#");
             for (int k = 0; k < hpw; k++) {
-              coverage[17] = true;
+              coverage[18] = true;
               sb.append(j % 2 == 0 ? "#" : " ");
             }
           }
@@ -130,22 +131,22 @@ public class TreePrinter {
         sb.append('\n');
       }
       for (int j = 0; j < line.size(); j++) {
-        coverage[18] = true;
+        coverage[19] = true;
         String f = line.get(j);
         if (f == null) {
           f = "";
-          coverage[19] = true;
+          coverage[20] = true;
         }
         int gap1 = (int) Math.ceil(perpiece / 2f - f.length() / 2f);
         int gap2 = (int) Math.floor(perpiece / 2f - f.length() / 2f);
 
         for (int k = 0; k < gap1; k++) {
-          coverage[20] = true;
+          coverage[21] = true;
           sb.append(' ');
         }
         sb.append(f);
         for (int k = 0; k < gap2; k++) {
-          coverage[21] = true;
+          coverage[22] = true;
           sb.append(' ');
         }
       }
