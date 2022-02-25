@@ -33,7 +33,17 @@ public class LongestCommonSubsequenceTest {
 
     // Expected output is null, as input contains an empty array.
     @Test
-    public void lcsNull(){
+    public void lcsNullEmptyA(){
+        char[] A = {};
+        char[] B = {'A', 'B', 'C'};
+
+        String result = LongestCommonSubsequence.lcs(A, B);
+        assertNull(result);
+    }
+
+    // Expected output is null, as input contains an empty array.
+    @Test
+    public void lcsNullEmptyB(){
         char[] A = {'A', 'B', 'C'};
         char[] B = {};
 
@@ -43,7 +53,17 @@ public class LongestCommonSubsequenceTest {
 
     // Expected output is null, as input contains a null value.
     @Test
-    public void lcsNullFromNullInput(){
+    public void lcsNullFromNullA(){
+        char[] A = null;
+        char[] B = {'A', 'B', 'C'};
+
+        String result = LongestCommonSubsequence.lcs(A, B);
+        assertNull(result);
+    }
+
+    // Expected output is null, as input contains a null value.
+    @Test
+    public void lcsNullFromNullB(){
         char[] A = {'A', 'B', 'C'};
         char[] B = null;
 
