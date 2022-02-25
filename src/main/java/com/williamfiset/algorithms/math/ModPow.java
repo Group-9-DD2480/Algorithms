@@ -41,7 +41,7 @@ public class ModPow {
 
   // Returns the modular inverse of 'a' mod 'm'
   // Make sure m > 0 and 'a' & 'm' are relatively prime.
-  private static long modInv(long a, long m) {
+  public static long modInv(long a, long m) {
 
     a = ((a % m) + m) % m;
 
@@ -100,7 +100,7 @@ public class ModPow {
 
     java.math.BigInteger A, N, M, r1;
     long a, n, m, r2;
-
+  /*
     A = new java.math.BigInteger("3");
     N = new java.math.BigInteger("4");
     M = new java.math.BigInteger("1000000");
@@ -112,6 +112,8 @@ public class ModPow {
     r1 = A.modPow(N, M); // 81
     r2 = modPow(a, n, m); // 81
     System.out.println(r1 + " " + r2);
+
+   */
 
     A = new java.math.BigInteger("-45");
     N = new java.math.BigInteger("12345");
@@ -168,6 +170,11 @@ public class ModPow {
     for(int i = 0; i < branch_coverage.length; i++){
       System.out.println(branch_coverage[i]);
     }
+    a = 3;
+    n = 0;
+    m = 39;
+    r2 = modPow(a, n, m); // 81
+    System.out.println(gcd(a, m));
   }
 
   /* TESTING RELATED METHODS */
