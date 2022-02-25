@@ -20,10 +20,7 @@ public class TreePrinterTest {
     
     @Test
     public void test() {
-        test =new boolean [13];
-        for(int i = 0; i < test.length; i++) {
-            System.out.println(i + " : " + test[i]);
-          }
+
     }
 
 }

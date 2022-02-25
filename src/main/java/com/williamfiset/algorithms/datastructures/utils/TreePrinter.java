@@ -20,12 +20,10 @@ public class TreePrinter {
   }
 
   // Print a binary tree.
+ public static final boolean[] coverage = new boolean[23];
 
-  public static String getTreeDisplay(PrintableNode root){
-    return " ";
-  }
 
-  public static boolean[] getTreeDisplay(PrintableNode root, boolean[] coverage) {
+  public static String getTreeDisplay(PrintableNode root) {
 
     StringBuilder sb = new StringBuilder();
     List<List<String>> lines = new ArrayList<List<String>>();
@@ -40,27 +38,40 @@ public class TreePrinter {
       nn = 0;
       List<String> line = new ArrayList<String>();
       for (PrintableNode n : level) {
+        coverage[0] = true;
         
         if (n == null) {
-          coverage[0] = true;
+          coverage[1] = true;
           line.add(null);
           next.add(null);
           next.add(null);
         } else {
-          coverage[1] = true;
+          coverage[2] = true;
           String aa = n.getText();
           line.add(aa);
-          if (aa.length() > widest) {widest = aa.length(); coverage[2] = true;}
+          if (aa.length() > widest) {
+            widest = aa.length();
+            coverage[3] = true;
+          }
 
           next.add(n.getLeft());
           next.add(n.getRight());
 
-          if (n.getLeft() != null) nn++; coverage[3] = true;
-          if (n.getRight() != null) nn++; coverage[4] = true;
+          if (n.getLeft() != null) {
+            nn++;
+            coverage[4] = true;
+          }
+          if (n.getRight() != null) {
+            nn++;
+            coverage[5] = true;
+          }
         }
       }
 
-      if (widest % 2 == 1) widest++ ; coverage[5] = true;
+      if (widest % 2 == 1) {
+        widest++ ;
+        coverage[6] = true;
+      }
 
       lines.add(line);
 
@@ -72,39 +83,47 @@ public class TreePrinter {
 
     int perpiece = lines.get(lines.size() - 1).size() * (widest + 4);
     for (int i = 0; i < lines.size(); i++) {
+      coverage[7] = true;
       List<String> line = lines.get(i);
       int hpw = (int) Math.floor(perpiece / 2f) - 1;
       if (i > 0) {
-        coverage[6] = true;
+        coverage[8] = true;
         for (int j = 0; j < line.size(); j++) {
 
           // split node
           char c = ' ';
           if (j % 2 == 1) {
-            coverage[7] = true;
+            coverage[9] = true;
             if (line.get(j - 1) != null) {
-              coverage[8] = true;
+              coverage[10] = true;
               c = (line.get(j) != null) ? '#' : '#';
             } else {
-              coverage[9] = true;
-              if (j < line.size() && line.get(j) != null) c = '#';
+              coverage[11] = true;
+              coverage[12] = (j < line.size());
+              coverage[13] = (line.get(j) != null);
+              if (j < line.size() && line.get(j) != null) {
+                c = '#';
+              }
             }
           }
           sb.append(c);
 
           // lines and spaces
           if (line.get(j) == null) {
-            coverage[10] = true;
+            coverage[14] = true;
             for (int k = 0; k < perpiece - 1; k++) {
+              coverage[15] = true;
               sb.append(' ');
             }
           } else {
-            coverage[11] = true;
+            coverage[16] = true;
             for (int k = 0; k < hpw; k++) {
+              coverage[17] = true;
               sb.append(j % 2 == 0 ? " " : "#");
             }
             sb.append(j % 2 == 0 ? "#" : "#");
             for (int k = 0; k < hpw; k++) {
+              coverage[18] = true;
               sb.append(j % 2 == 0 ? "#" : " ");
             }
           }
@@ -112,16 +131,22 @@ public class TreePrinter {
         sb.append('\n');
       }
       for (int j = 0; j < line.size(); j++) {
+        coverage[19] = true;
         String f = line.get(j);
-        if (f == null) f = ""; coverage[12] = true;
+        if (f == null) {
+          f = "";
+          coverage[20] = true;
+        }
         int gap1 = (int) Math.ceil(perpiece / 2f - f.length() / 2f);
         int gap2 = (int) Math.floor(perpiece / 2f - f.length() / 2f);
 
         for (int k = 0; k < gap1; k++) {
+          coverage[21] = true;
           sb.append(' ');
         }
         sb.append(f);
         for (int k = 0; k < gap2; k++) {
+          coverage[22] = true;
           sb.append(' ');
         }
       }
@@ -129,9 +154,16 @@ public class TreePrinter {
 
       perpiece /= 2;
     }
+    printCoverage(coverage);
+    return sb.toString();
     
-    return coverage;
-    
+  }
+
+  private static void printCoverage(boolean[] test){
+    test =new boolean [13];
+    for(int i = 0; i < test.length; i++) {
+      System.out.println(i + " : " + test[i]);
+    }
   }
   
 }
