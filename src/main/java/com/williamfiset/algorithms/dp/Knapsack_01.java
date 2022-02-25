@@ -33,6 +33,9 @@ public class Knapsack_01 {
     if (W == null || V == null || W.length != V.length || capacity < 0) {
       branch_coverage[1] = W == null;
       branch_coverage[2] = V == null;
+      if(branch_coverage[2] || branch_coverage[1]){
+          throw new IllegalArgumentException("Invalid input");
+      }
       branch_coverage[3] = W.length != V.length;
       branch_coverage[4] = capacity < 0;
 
