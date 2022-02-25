@@ -53,14 +53,23 @@ public class ModPow {
   // Computes a^n modulo mod very efficiently in O(lg(n)) time.
   // This function supports negative exponent values and a negative
   // base, however the modulus must be positive.
-  public static long modPow(long a, long n, long mod) {
-
+  private static void handleInputs(long a, long mod) {
     if (mod <= 0) throw new ArithmeticException("mod must be > 0");
     if (a > MAX || mod > MAX)
       throw new IllegalArgumentException("Long overflow is upon you, mod or base is too high!");
     if (a < MIN || mod < MIN)
       throw new IllegalArgumentException("Long overflow is upon you, mod or base is too low!");
 
+  }
+  public static long modPow(long a, long n, long mod) {
+    handleInputs(a, mod);
+    /*
+    if (mod <= 0) throw new ArithmeticException("mod must be > 0");
+    if (a > MAX || mod > MAX)
+      throw new IllegalArgumentException("Long overflow is upon you, mod or base is too high!");
+    if (a < MIN || mod < MIN)
+      throw new IllegalArgumentException("Long overflow is upon you, mod or base is too low!");
+  */
     // To handle negative exponents we can use the modular
     // inverse of a to our advantage since: a^-n mod m = (a^-1)^n mod m
     if (n < 0) {
