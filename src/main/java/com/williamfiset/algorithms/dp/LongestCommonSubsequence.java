@@ -11,10 +11,11 @@ package com.williamfiset.algorithms.dp;
 
 public class LongestCommonSubsequence {
 
+  public static boolean[] activated = new boolean[14];
+
   // Returns a non unique Longest Common Subsequence
   // between the strings str1 and str2 in O(nm)
   public static String lcs(char[] A, char[] B) {
-    boolean[] activated = new boolean[14];
     if (A == null) {
         activated[0] = true;
         return null;
@@ -90,9 +91,6 @@ public class LongestCommonSubsequence {
       i--;
       j--; 
     }
-    for (int a = 0; a < activated.length; a++) {
-      System.out.println(Integer.toString(a) + ": " + Boolean.toString(activated[a]));
-    }
     return new String(lcs, 0, lcsLen);
   }
 
@@ -105,5 +103,9 @@ public class LongestCommonSubsequence {
     A = new char[] {'3', '9', '8', '3', '9', '7', '9', '7', '0'};
     B = new char[] {'3', '3', '9', '9', '9', '1', '7', '2', '0', '6'};
     System.out.println(lcs(A, B)); // 339970
+
+    for (int a = 0; a < activated.length; a++) {
+      System.out.println(Integer.toString(a) + ": " + Boolean.toString(activated[a]));
+    }
   }
 }
