@@ -82,7 +82,9 @@ public class ModPow {
     branch_coverage[9] = (n != 0);
     for (long i = 0; n != 0; i++) {
       long mask = 1L << i;
-      branch_coverage[10] = ((n & mask) == mask);
+      if (branch_coverage[10] != true) {
+        branch_coverage[10] = ((n & mask) == mask);
+      }
       if ((n & mask) == mask) {
         r = (((r * p) % mod) + mod) % mod;
         n -= mask;
